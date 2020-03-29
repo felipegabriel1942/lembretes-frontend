@@ -2,17 +2,17 @@
 <div class="row h-100 mx-0">
   <form class="col-md-12 my-auto" [formGroup]="formLogin">
     <mat-card
-      class="mx-auto card-login">
+      class="mx-auto card-login" *ngIf="!carregando">
       <div class="row d-flex justify-content-center">
         <mat-form-field>
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email">
+          <input matInput type="email" formControlName="email">
         </mat-form-field>
       </div>
       <div class="row d-flex justify-content-center">
         <mat-form-field>
           <mat-label>Senha</mat-label>
-          <input matInput formControlName="senha">
+          <input matInput type="password" formControlName="senha">
         </mat-form-field>
       </div>
       <div class="row d-flex justify-content-center">
@@ -23,5 +23,13 @@
           [disabled]="formLogin.invalid">Login</button>
       </div>
     </mat-card>
+    <div class="col-md-12 my-auto" *ngIf="carregando">
+      <mat-progress-spinner
+        class="mx-auto"
+        [color]="color"
+        [mode]="mode"
+        [value]="value">
+      </mat-progress-spinner>
+    </div>
   </form>
 </div>

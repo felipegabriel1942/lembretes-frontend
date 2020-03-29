@@ -3,13 +3,18 @@ import { CommonModule } from '@angular/common';
 
 import { LembreteRoutingModule } from './lembrete-routing.module';
 import { LembreteComponent } from './lembrete.component';
+import { AppMaterialModule } from 'src/app/app-material.module';
+import { CriarLembreteComponent } from './criar-lembrete/criar-lembrete.component';
+import { CoreModule } from 'src/app/core/core.module';
 
 
 @NgModule({
-  declarations: [LembreteComponent],
+  declarations: [LembreteComponent, CriarLembreteComponent],
   imports: [
     CommonModule,
-    LembreteRoutingModule
+    LembreteRoutingModule,
+    AppMaterialModule,
+    CoreModule
   ]
 })
 export class LembreteModule { }

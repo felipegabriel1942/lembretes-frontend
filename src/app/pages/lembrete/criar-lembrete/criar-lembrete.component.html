@@ -1,0 +1,46 @@
+<div class="row h-100 mx-0">
+  <form [formGroup]="formLembrete" *ngIf="!carregando">
+    <div class="row">
+      <h6 mat-dialog-title class="mx-auto" style="color: #3f51b5">Crie seu lembrete</h6>
+    </div>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Título</mat-label>
+      <input matInput type="text" formControlName="titulo">
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Data do lembrete</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="dataLembrete">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker ></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Lembrete</mat-label>
+      <textarea rows="3" matInput type="text" formControlName="texto"></textarea>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      style="float: right;"
+      [disabled]="formLembrete.invalid"
+      (click)="salvar()">Salvar</button>
+    <button
+      mat-raised-button
+      color="warn"
+      style="float: right;"
+      class="mr-2"
+      (click)="cancelar()">Cancelar</button>
+  </form>
+
+  <div class="col-md-12 my-auto" *ngIf="carregando">
+    <mat-progress-spinner
+      class="mx-auto"
+      [color]="color"
+      [mode]="mode"
+      [value]="value">
+    </mat-progress-spinner>
+  </div>
+</div>

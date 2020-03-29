@@ -1,0 +1,10 @@
+.estilo-header {
+  background-color: #6A00FF;
+  font-size: 22px;
+}
+
+.estilo-icon {
+  color: white;
+  margin-right: 15px;
+  cursor: pointer;
+}

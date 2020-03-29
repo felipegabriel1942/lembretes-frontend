@@ -10,7 +10,11 @@ export class LoginService {
 
   constructor(private http: HttpClient) {}
 
-  buscarUsuarioPorEmailESenha(email: string, senha: string) {
-    return this.http.get(AppKeys.apiUrl + `usuario/buscar-usuario-email-e-senha?email=${email}&senha=${senha}`);
+  buscarUsuarioPorEmail(email: string) {
+    return this.http.get<Usuario>(AppKeys.apiUrl + `usuario/buscar-usuario-email?email=${email}`);
+  }
+
+  buscarUsuarioPorPk(pkUsuario: number) {
+    return this.http.get<Usuario>(AppKeys.apiUrl + `usuario/buscar-usuario-pk?pkUsuario=${pkUsuario}`);
   }
 }
