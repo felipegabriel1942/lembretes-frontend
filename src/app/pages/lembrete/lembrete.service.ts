@@ -13,4 +13,8 @@ export class LembreteService {
   salvarLembrete(lembrete: Lembrete) {
     return this.http.post<Lembrete>(AppKeys.apiUrl + `lembrete`, lembrete);
   }
+
+  listarLembretes(pagina: number, qtdRegistros: number, pkUsuario: number) {
+    return this.http.get(AppKeys.apiUrl + `lembrete/listar-lembretes?pagina=${pagina}&qtdRegistros=${qtdRegistros}&pkUsuario=${pkUsuario}`);
+  }
 }

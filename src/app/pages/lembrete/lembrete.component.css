@@ -8,3 +8,31 @@
   margin-right: 15px;
   cursor: pointer;
 }
+
+
+.mat-table {
+  overflow: auto;
+  width: 100%;
+}
+
+.mat-row, .mat-header-row {
+  min-width: 1000px;
+  width: 100%;
+}
+
+.mat-column-titulo {
+  flex: 0 0 25%;
+}
+
+.mat-column-dataLembrete {
+  flex: 0 0 10%;
+}
+
+.mat-column-editar {
+  flex: 0 0 10%;
+}
+
+.mat-column-excluir {
+  flex: 0 0 10%;
+}
+
