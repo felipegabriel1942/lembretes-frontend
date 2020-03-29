@@ -1,1 +1,27 @@
-<p>login works!</p>
+
+<div class="row h-100 mx-0">
+  <form class="col-md-12 my-auto" [formGroup]="formLogin">
+    <mat-card
+      class="mx-auto card-login">
+      <div class="row d-flex justify-content-center">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email">
+        </mat-form-field>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <mat-form-field>
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="senha">
+        </mat-form-field>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="login()"
+          [disabled]="formLogin.invalid">Login</button>
+      </div>
+    </mat-card>
+  </form>
+</div>
