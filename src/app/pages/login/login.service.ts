@@ -17,4 +17,8 @@ export class LoginService {
   buscarUsuarioPorPk(pkUsuario: number) {
     return this.http.get<Usuario>(AppKeys.apiUrl + `usuario/buscar-usuario-pk?pkUsuario=${pkUsuario}`);
   }
+
+  salvarUsuario(usuario: Usuario) {
+    return this.http.post(AppKeys.apiUrl + `cadastro-usuario`, usuario);
+  }
 }

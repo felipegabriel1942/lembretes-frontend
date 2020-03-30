@@ -1,0 +1,46 @@
+<div class="row h-100 mx-0">
+  <form [formGroup]="formUsuario" *ngIf="!carregando">
+    <div class="row mb-3">
+      <h5 class="mx-auto" style="color: blue;">Cadastre-se</h5>
+    </div>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Nome</mat-label>
+      <input matInput type="text" formControlName="nome">
+      <mat-error *ngIf="formUsuario.get('nome').invalid">{{errorService.getErrorMessage(formUsuario, 'nome')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" formControlName="email">
+      <mat-error *ngIf="formUsuario.get('email').invalid">{{errorService.getErrorMessage(formUsuario, 'email')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field style="width: 100%;">
+      <mat-label>Senha</mat-label>
+      <input matInput type="password" formControlName="senha">
+      <mat-error *ngIf="formUsuario.get('senha').invalid">{{errorService.getErrorMessage(formUsuario, 'senha')}}</mat-error>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      style="float: right; "
+      [disabled]="formUsuario.invalid"
+      (click)="salvar()">Salvar</button>
+    <button
+      mat-raised-button
+      style="float: right;"
+      class="mr-2"
+      (click)="cancelar()">Cancelar</button>
+  </form>
+
+  <div class="col-md-12 my-auto" *ngIf="carregando">
+    <mat-progress-spinner
+      class="mx-auto"
+      [color]="color"
+      [mode]="mode"
+      [value]="value">
+    </mat-progress-spinner>
+  </div>
+</div>

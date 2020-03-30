@@ -1,26 +1,42 @@
-
-<div class="row h-100 mx-0">
+<div class="row h-100 mx-0" style="background-image: url('./assets/images/background-login.png');">
   <form class="col-md-12 my-auto" [formGroup]="formLogin">
     <mat-card
       class="mx-auto card-login" *ngIf="!carregando">
-      <div class="row d-flex justify-content-center">
-        <mat-form-field>
+      <div class="row">
+        <img height="80" src="./assets/images/logo2.png" class="mx-auto"/>
+
+      </div>
+      <div class="row">
+        <p class="mx-auto mb-0"
+          style="font-family: 'Indie Flower', cursive; font-size: 30px; font-weight: bold; color: rgb(201, 148, 16);">SEA-LEMBRE</p>
+      </div>
+
+      <div class="row d-flex justify-content-center ">
+        <mat-form-field style="width: 300px;">
           <mat-label>Email</mat-label>
           <input matInput type="email" formControlName="email">
+          <mat-error *ngIf="formLogin.get('email').invalid">{{errorService.getErrorMessage(formLogin, 'email')}}</mat-error>
         </mat-form-field>
       </div>
       <div class="row d-flex justify-content-center">
-        <mat-form-field>
+        <mat-form-field style="width: 300px;">
           <mat-label>Senha</mat-label>
           <input matInput type="password" formControlName="senha">
+          <mat-error *ngIf="formLogin.get('senha').invalid">{{errorService.getErrorMessage(formLogin, 'senha')}}</mat-error>
         </mat-form-field>
       </div>
-      <div class="row d-flex justify-content-center">
+      <div class="row d-flex justify-content-center mt-2">
         <button
+          style="width: 300px;"
           mat-raised-button
           color="primary"
           (click)="login()"
           [disabled]="formLogin.invalid">Login</button>
+      </div>
+      <div class="row mt-2 justify-content-center">
+        <span style="font-size: 14px;">Não tem conta?
+          <span (click)="abrirCadastroUsuario()" style="cursor: pointer; font-weight: bold; color: rgb(80, 80, 214);">Cadastre-se</span>
+        </span>
       </div>
     </mat-card>
     <div class="col-md-12 my-auto" *ngIf="carregando">

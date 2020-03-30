@@ -4,7 +4,9 @@ import { CredenciaisDTO } from 'src/app/core/security/credenciais.dto';
 import { AuthenticationService } from 'src/app/core/security/authentication.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ThemePalette, ProgressSpinnerMode } from '@angular/material';
+import { ThemePalette, ProgressSpinnerMode, MatSnackBar, MatDialog } from '@angular/material';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { ErrorService } from 'src/app/shared/service/error.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +23,10 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private authenticationService: AuthenticationService,
-              private router: Router) { }
+              private router: Router,
+              private snackBar: MatSnackBar,
+              public dialog: MatDialog,
+              public errorService: ErrorService) { }
 
   ngOnInit() {
     this.formBuilder();
@@ -50,8 +55,18 @@ export class LoginComponent implements OnInit {
           this.carregando = false;
         });
       }, erro => {
+        this.snackBar.open('Senha ou email inválidos!', 'Fechar', {
+          duration: 5000
+        });
         this.carregando = false;
       }
     );
+  }
+
+  abrirCadastroUsuario() {
+    const dialogRef = this.dialog.open(CadastroUsuarioComponent, {
+      width: '350px',
+      height: '320px'
+    });
   }
 }
