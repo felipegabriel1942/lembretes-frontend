@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Lembrete } from 'src/app/shared/models/lembrete';
 import { MatDialogRef, ThemePalette, ProgressSpinnerMode, MatSnackBar, MatTableDataSource } from '@angular/material';
@@ -7,13 +7,14 @@ import { LoginService } from '../../login/login.service';
 import { LembreteService } from '../lembrete.service';
 import { LembreteComponent } from '../lembrete.component';
 import { stringify } from 'querystring';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-criar-lembrete',
   templateUrl: './criar-lembrete.component.html',
   styleUrls: ['./criar-lembrete.component.css']
 })
-export class CriarLembreteComponent implements OnInit {
+export class CriarLembreteComponent implements OnInit, OnDestroy {
 
   formLembrete: FormGroup;
   usuario = new Usuario();
@@ -22,6 +23,7 @@ export class CriarLembreteComponent implements OnInit {
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
   carregando = false;
+  lembreteEdicaoSubscription = new Subscription();
 
   constructor(private dialogRef: MatDialogRef<CriarLembreteComponent>,
               private snackBar: MatSnackBar,
@@ -31,6 +33,7 @@ export class CriarLembreteComponent implements OnInit {
   ngOnInit() {
     this.formBuilder();
     this.getUsuarioLogado();
+    this.getLembreteEdicao();
   }
 
   formBuilder() {
@@ -68,8 +71,23 @@ export class CriarLembreteComponent implements OnInit {
     }
   }
 
+  getLembreteEdicao() {
+    this.lembreteEdicaoSubscription = this.lembreteService.edicaoLembrete.subscribe(
+      (lembrete: Lembrete) => {
+        this.lembrete = lembrete;
+        this.formLembrete.get('titulo').setValue(this.lembrete.titulo);
+        this.formLembrete.get('texto').setValue(this.lembrete.texto);
+        this.formLembrete.get('dataLembrete').setValue(new Date(this.lembrete.dataLembrete));
+      }
+    );
+  }
+
   cancelar() {
     this.dialogRef.close();
+  }
+
+  ngOnDestroy() {
+    this.lembreteEdicaoSubscription.unsubscribe();
   }
 
 }

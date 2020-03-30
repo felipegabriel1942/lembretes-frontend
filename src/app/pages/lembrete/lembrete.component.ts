@@ -95,6 +95,18 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
+  editar(lembrete: Lembrete) {
+    this.lembreteService.edicaoLembrete.next(lembrete);
+    const dialogRef = this.dialog.open(CriarLembreteComponent, {
+      width: '350px',
+      height: '370px'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.getLembretes();
+    });
+  }
+
   aplicarFiltro(evento: Event) {
     const filtrarValor = (evento.target as HTMLInputElement).value;
     this.dataSource.filter = filtrarValor.trim().toLowerCase();

@@ -2,6 +2,7 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Lembrete } from 'src/app/shared/models/lembrete';
 import { AppKeys } from 'src/app/core/keys/app-keys';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ export class LembreteService {
 
   confirmarExclusao = new EventEmitter();
   cancelarExclusao = new EventEmitter();
+  edicaoLembrete = new BehaviorSubject(new Lembrete());
 
   constructor(private http: HttpClient) {}
 

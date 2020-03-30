@@ -32,23 +32,23 @@
     <div class="row w-100 mx-0">
       <mat-table class="w-100 mx-2" [dataSource]="dataSource">
         <ng-container matColumnDef="titulo">
-          <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="texto">
-          <mat-header-cell *matHeaderCellDef> Lembrete </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Lembrete</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.texto}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="dataLembrete">
-          <mat-header-cell *matHeaderCellDef> Data </mat-header-cell>
+          <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.dataLembrete | date: 'dd/MM/yyyy'}} </mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="editar">
           <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
-          <mat-cell *matCellDef="let element" ><button color="primary" mat-raised-button>Editar</button></mat-cell>
+          <mat-cell *matCellDef="let element" (click)="editar(element)"><button color="primary" mat-raised-button>Editar</button></mat-cell>
         </ng-container>
 
         <ng-container matColumnDef="excluir">
