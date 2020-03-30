@@ -3,12 +3,16 @@
   font-size: 22px;
 }
 
+.mat-toolbar {
+  position: relative;
+  z-index: 2 !important;
+}
+
 .estilo-icon {
   color: white;
   margin-right: 15px;
   cursor: pointer;
 }
-
 
 .mat-table {
   overflow: auto;
@@ -29,10 +33,13 @@
 }
 
 .mat-column-editar {
-  flex: 0 0 10%;
+  flex: 0 0 7%;
 }
 
 .mat-column-excluir {
-  flex: 0 0 10%;
+  flex: 0 0 7%;
 }
 
+.example-fill-remaining-space {
+  flex: 1 1 auto;
+}
