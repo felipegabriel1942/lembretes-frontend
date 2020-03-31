@@ -8,6 +8,7 @@ import { LembreteService } from './lembrete.service';
 import { Router } from '@angular/router';
 import { ExcluirLembreteComponent } from './excluir-lembrete/excluir-lembrete.component';
 import { Subscription } from 'rxjs';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-lembrete',
@@ -24,6 +25,7 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
   resultsLength = 0;
   dialogExclusao;
   subscriptionList = new Array<Subscription>();
+  mobile = false;
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -31,9 +33,11 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
               private lembreteService: LembreteService,
               private router: Router,
               public dialog: MatDialog,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private deviceService: DeviceDetectorService) { }
 
   ngOnInit() {
+    this.mobile = this.deviceService.isMobile() || this.deviceService.isTablet();
     this.excluir();
   }
 

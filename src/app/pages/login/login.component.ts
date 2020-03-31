@@ -16,7 +16,7 @@ import { ErrorService } from 'src/app/shared/service/error.service';
 export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
-  color: ThemePalette = 'primary';
+  color: ThemePalette = 'accent';
   mode: ProgressSpinnerMode = 'indeterminate';
   value = 50;
   carregando = false;

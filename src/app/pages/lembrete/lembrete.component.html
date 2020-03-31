@@ -1,88 +1,91 @@
-<mat-toolbar class="estilo-header mat-elevation-z4">
-  <mat-icon style="color: white;" class="mr-2">note_add</mat-icon>
-  <span style="color: white; font-size: 16px;" class="mt-1">
-    SEA-LEMBRE</span>
-  <span class="example-fill-remaining-space"></span>
-  <button
-    color="primary"
-    mat-button style="color: white;"
-    (click)="deslogarSistema()">
-    <mat-icon
-      aria-hidden="false"
-      aria-label="Example home icon"
-      class="mr-2">exit_to_app</mat-icon>Sair
-  </button>
-</mat-toolbar>
 
-<div class="row mx-2" style="margin-top: 59px;">
-  <mat-card style="width: 100%;" class="mt-3">
-    <div class="row mx-0">
-      <div class="col-9 pr-0">
-        <mat-form-field style="width: 100%;">
-          <mat-label>Filtrar lembretes</mat-label>
-          <input matInput (keyup)="aplicarFiltro($event)">
-        </mat-form-field>
-      </div>
-      <div class="col-1 px-0">
+<div style="background-color: rgb(238, 234, 234);" [ngClass]="{'h-100': !mobile}">
+  <mat-toolbar class="estilo-header mat-elevation-z4">
+    <mat-icon style="color: white;" class="mr-2">note_add</mat-icon>
+    <span style="color: white; font-size: 16px;" class="mt-1">
+      SEA-LEMBRE</span>
+    <span class="example-fill-remaining-space"></span>
+    <button
+      color="primary"
+      mat-button style="color: white;"
+      (click)="deslogarSistema()">
+      <mat-icon
+        aria-hidden="false"
+        aria-label="Example home icon"
+        class="mr-2">exit_to_app</mat-icon>Sair
+    </button>
+  </mat-toolbar>
 
-      </div>
-      <div class="col-2 pl-0 pr-4">
-        <button
-          mat-mini-fab
-          style="float: right; background-color: green; color: white"
-          class="mt-3"
-          matTooltip="Adicionar uma novo lembrete"
-          [matTooltipPosition]="'left'"
-          (click)="abrirCadastro()">
-          <mat-icon
-            aria-hidden="false"
-            aria-label="Example home icon">add</mat-icon></button>
-      </div>
-    </div>
-    <div class="row w-100 mx-0">
-      <mat-table class="w-100 mx-2" [dataSource]="dataSource">
-        <ng-container matColumnDef="titulo">
-          <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
-        </ng-container>
+  <div class="row mx-2" style="margin-top: 59px;">
+    <mat-card style="width: 100%;" class="mt-3">
+      <div class="row mx-0">
+        <div class="col-9 pr-0">
+          <mat-form-field style="width: 100%;">
+            <mat-label>Filtrar lembretes</mat-label>
+            <input matInput (keyup)="aplicarFiltro($event)">
+          </mat-form-field>
+        </div>
+        <div class="col-1 px-0">
 
-        <ng-container matColumnDef="texto">
-          <mat-header-cell *matHeaderCellDef>Lembrete</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.texto}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="dataLembrete">
-          <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.dataLembrete | date: 'dd/MM/yyyy'}} </mat-cell>
-        </ng-container>
-
-        <ng-container matColumnDef="editar">
-          <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
-          <mat-cell *matCellDef="let element" >
+        </div>
+        <div class="col-2 pl-0 pr-4">
+          <button
+            mat-mini-fab
+            style="float: right; background-color: green; color: white"
+            class="mt-3"
+            matTooltip="Adicionar uma novo lembrete"
+            [matTooltipPosition]="'left'"
+            (click)="abrirCadastro()">
             <mat-icon
               aria-hidden="false"
-              style="cursor: pointer;"
-              (click)="editar(element)"
-              color="accent"
-              aria-label="Example home icon">create</mat-icon></mat-cell>
-        </ng-container>
+              aria-label="Example home icon">add</mat-icon></button>
+        </div>
+      </div>
+      <div class="row w-100 mx-0">
+        <mat-table class="w-100 mx-2" [dataSource]="dataSource">
+          <ng-container matColumnDef="titulo">
+            <mat-header-cell *matHeaderCellDef>Título</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.titulo}} </mat-cell>
+          </ng-container>
 
-        <ng-container matColumnDef="excluir">
-          <mat-header-cell *matHeaderCellDef>Excluir</mat-header-cell>
-          <mat-cell
-            *matCellDef="let element" >
-            <mat-icon
-              aria-hidden="false"
-              style="cursor: pointer; font-weight: bold;"
-              color="accent"
-              (click)="confimacaoExclusao(element)"
-              aria-label="Example home icon">clear</mat-icon></mat-cell>
-        </ng-container>
+          <ng-container matColumnDef="texto">
+            <mat-header-cell *matHeaderCellDef>Lembrete</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.texto}} </mat-cell>
+          </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-      </mat-table>
-    </div>
-    <mat-paginator [length]="resultsLength" [pageSize]="10" showFirstLastButtons (page)="atualizarPaginaTabela($event)"></mat-paginator>
-  </mat-card>
+          <ng-container matColumnDef="dataLembrete">
+            <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dataLembrete | date: 'dd/MM/yyyy'}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="editar">
+            <mat-header-cell *matHeaderCellDef>Editar</mat-header-cell>
+            <mat-cell *matCellDef="let element" >
+              <mat-icon
+                aria-hidden="false"
+                style="cursor: pointer;"
+                (click)="editar(element)"
+                color="accent"
+                aria-label="Example home icon">create</mat-icon></mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="excluir">
+            <mat-header-cell *matHeaderCellDef>Excluir</mat-header-cell>
+            <mat-cell
+              *matCellDef="let element" >
+              <mat-icon
+                aria-hidden="false"
+                style="cursor: pointer; font-weight: bold;"
+                color="accent"
+                (click)="confimacaoExclusao(element)"
+                aria-label="Example home icon">clear</mat-icon></mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+      </div>
+      <mat-paginator [length]="resultsLength" [pageSize]="10" showFirstLastButtons (page)="atualizarPaginaTabela($event)"></mat-paginator>
+    </mat-card>
+  </div>
 </div>

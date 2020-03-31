@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CoreModule } from './core/core.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LOCALE_ID } from '@angular/core';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 
 
 import { registerLocaleData } from '@angular/common';
@@ -23,6 +24,7 @@ registerLocaleData(localePt, 'pt-BR');
     AppRoutingModule,
     CoreModule,
     BrowserAnimationsModule,
+    DeviceDetectorModule.forRoot()
   ],
   providers: [HttpClientModule, { provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
