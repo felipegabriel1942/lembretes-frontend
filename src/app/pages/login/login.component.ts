@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { ThemePalette, ProgressSpinnerMode, MatSnackBar, MatDialog } from '@angular/material';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
 import { ErrorService } from 'src/app/shared/service/error.service';
+import { UtilsService } from 'src/app/shared/service/utils.service';
+import { LembreteService } from '../lembrete/lembrete.service';
 
 @Component({
   selector: 'app-login',
@@ -25,8 +27,10 @@ export class LoginComponent implements OnInit {
               private authenticationService: AuthenticationService,
               private router: Router,
               private snackBar: MatSnackBar,
+              private lembreteService: LembreteService,
               public dialog: MatDialog,
-              public errorService: ErrorService) { }
+              public errorService: ErrorService,
+              public utilsService: UtilsService) { }
 
   ngOnInit() {
     this.formBuilder();
@@ -50,6 +54,7 @@ export class LoginComponent implements OnInit {
         this.loginService.buscarUsuarioPorEmail(credenciais.email).subscribe(usuario => {
           sessionStorage.setItem('usuario', usuario.pkUsuario.toString());
           this.carregando = false;
+          this.lembreteService.exibirMensagemBemVindo.next(true);
           this.router.navigateByUrl('/lembrete');
         }, erro => {
           this.carregando = false;

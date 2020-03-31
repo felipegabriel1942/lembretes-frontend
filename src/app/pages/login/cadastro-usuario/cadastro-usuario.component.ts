@@ -4,6 +4,7 @@ import { ThemePalette, ProgressSpinnerMode, MatDialogRef, MatSnackBar } from '@a
 import { Usuario } from 'src/app/shared/models/usuario';
 import { LoginService } from '../login.service';
 import { ErrorService } from 'src/app/shared/service/error.service';
+import { UtilsService } from 'src/app/shared/service/utils.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
@@ -21,7 +22,8 @@ export class CadastroUsuarioComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<CadastroUsuarioComponent>,
               private loginService: LoginService,
               private snackBar: MatSnackBar,
-              public errorService: ErrorService) { }
+              public errorService: ErrorService,
+              public utilsService: UtilsService) { }
 
   ngOnInit() {
     this.formUsuarioBuilder();

@@ -7,18 +7,39 @@
     <mat-form-field style="width: 100%;">
       <mat-label>Título</mat-label>
       <input matInput type="text" formControlName="titulo">
+      <button mat-button
+        *ngIf="formLembrete.get('titulo').value != '' && formLembrete.get('titulo').value != null"
+        matSuffix mat-icon-button aria-label="Clear"
+        (click)="utilsService.resetarCampoForm(formLembrete, 'titulo')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="formLembrete.get('titulo').invalid">{{errorService.getErrorMessage(formLembrete, 'titulo')}}</mat-error>
     </mat-form-field>
 
     <mat-form-field style="width: 100%;">
       <mat-label>Data do lembrete</mat-label>
       <input matInput [matDatepicker]="picker" formControlName="dataLembrete">
+      <button mat-button
+        *ngIf="formLembrete.get('dataLembrete').value != '' && formLembrete.get('dataLembrete').value != null"
+        matSuffix mat-icon-button aria-label="Clear"
+        (click)="utilsService.resetarCampoForm(formLembrete, 'dataLembrete')">
+        <mat-icon>close</mat-icon>
+      </button>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker ></mat-datepicker>
+      <mat-error *ngIf="formLembrete.get('dataLembrete').invalid">{{errorService.getErrorMessage(formLembrete, 'dataLembrete')}}</mat-error>
     </mat-form-field>
 
     <mat-form-field style="width: 100%;">
       <mat-label>Lembrete</mat-label>
       <textarea rows="3" matInput type="text" formControlName="texto"></textarea>
+      <button mat-button
+        *ngIf="formLembrete.get('texto').value != '' && formLembrete.get('texto').value != null"
+        matSuffix mat-icon-button aria-label="Clear"
+        (click)="utilsService.resetarCampoForm(formLembrete, 'texto')">
+        <mat-icon>close</mat-icon>
+      </button>
+      <mat-error *ngIf="formLembrete.get('texto').invalid">{{errorService.getErrorMessage(formLembrete, 'texto')}}</mat-error>
     </mat-form-field>
 
     <button

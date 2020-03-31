@@ -11,6 +11,10 @@ export class ErrorService {
       return 'Campo obrigatório.';
     }
 
+    if (formulario.get(campo).hasError('matDatepickerParse')) {
+      return 'Data inválida.';
+    }
+
     if (formulario.get(campo).hasError('email')) {
       return 'Email inválido.';
     }

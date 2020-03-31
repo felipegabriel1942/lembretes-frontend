@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { ExcluirLembreteComponent } from './excluir-lembrete/excluir-lembrete.component';
 import { Subscription } from 'rxjs';
 import { DeviceDetectorService } from 'ngx-device-detector';
+import { AvisoLembreteComponent } from './aviso-lembrete/aviso-lembrete.component';
 
 @Component({
   selector: 'app-lembrete',
@@ -46,10 +47,20 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
     this.getUsuarioLogado();
   }
 
+  avisoAoUsuario() {
+    this.dialogExclusao = this.dialog.open(AvisoLembreteComponent, {
+      width: '350px',
+      height: '130px'
+    });
+  }
+
   getUsuarioLogado() {
     this.loginService.buscarUsuarioPorPk(+sessionStorage.getItem('usuario')).subscribe(
       usuario => {
         this.usuario = usuario;
+        this.lembreteService.contarLembretesUsuario(this.usuario.pkUsuario).subscribe(qtdLembretes => {
+          this.mostrarAvisoBemVindo();
+        });
         this.getLembretes();
       }
     );
@@ -139,6 +150,13 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
   deslogarSistema() {
     sessionStorage.clear();
     this.router.navigateByUrl('');
+  }
+
+  mostrarAvisoBemVindo() {
+    if (this.lembreteService.exibirMensagemBemVindo.value) {
+      this.avisoAoUsuario();
+      this.lembreteService.exibirMensagemBemVindo.next(false);
+    }
   }
 
   ngOnDestroy() {

@@ -4,12 +4,14 @@ import { LembreteComponent } from './lembrete.component';
 import { AuthGuard } from 'src/app/core/security/auth.guard';
 import { CriarLembreteComponent } from './criar-lembrete/criar-lembrete.component';
 import { ExcluirLembreteComponent } from './excluir-lembrete/excluir-lembrete.component';
+import { AvisoLembreteComponent } from './aviso-lembrete/aviso-lembrete.component';
 
 
 const routes: Routes = [
   {path: '', component: LembreteComponent, canActivate: [AuthGuard]},
   {path: 'criar-lembrete', component: CriarLembreteComponent, canActivate: [AuthGuard]},
-  {path: 'excluir-lembrete', component: ExcluirLembreteComponent, canActivate: [AuthGuard]}
+  {path: 'excluir-lembrete', component: ExcluirLembreteComponent, canActivate: [AuthGuard]},
+  {path: 'aviso-lembrete', component: AvisoLembreteComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

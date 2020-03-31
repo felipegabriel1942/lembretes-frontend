@@ -12,6 +12,7 @@ export class LembreteService {
   confirmarExclusao = new EventEmitter();
   cancelarExclusao = new EventEmitter();
   edicaoLembrete = new BehaviorSubject(new Lembrete());
+  exibirMensagemBemVindo = new BehaviorSubject(false);
 
   constructor(private http: HttpClient) {}
 
@@ -21,6 +22,10 @@ export class LembreteService {
 
   listarLembretes(pagina: number, qtdRegistros: number, pkUsuario: number) {
     return this.http.get(AppKeys.apiUrl + `lembrete/listar-lembretes?pagina=${pagina}&qtdRegistros=${qtdRegistros}&pkUsuario=${pkUsuario}`);
+  }
+
+  contarLembretesUsuario(pkUsuario: number) {
+    return this.http.get(AppKeys.apiUrl + `lembrete/total-lembretes-usuario?pkUsuario=${pkUsuario}`);
   }
 
   listarLembretesPorTitulo(pagina: number, qtdRegistros: number, titulo: string, pkUsuario: number) {

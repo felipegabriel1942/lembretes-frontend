@@ -6,6 +6,8 @@ import { Usuario } from 'src/app/shared/models/usuario';
 import { LoginService } from '../../login/login.service';
 import { LembreteService } from '../lembrete.service';
 import { Subscription } from 'rxjs';
+import { UtilsService } from 'src/app/shared/service/utils.service';
+import { ErrorService } from 'src/app/shared/service/error.service';
 
 @Component({
   selector: 'app-criar-lembrete',
@@ -26,7 +28,9 @@ export class CriarLembreteComponent implements OnInit, OnDestroy {
   constructor(private dialogRef: MatDialogRef<CriarLembreteComponent>,
               private snackBar: MatSnackBar,
               private loginService: LoginService,
-              private lembreteService: LembreteService) { }
+              private lembreteService: LembreteService,
+              public utilsService: UtilsService,
+              public errorService: ErrorService) { }
 
   ngOnInit() {
     this.formBuilder();
@@ -40,6 +44,7 @@ export class CriarLembreteComponent implements OnInit, OnDestroy {
       texto: new FormControl('', Validators.required),
       dataLembrete: new FormControl(new Date(), Validators.required)
     });
+
   }
 
   getUsuarioLogado() {
