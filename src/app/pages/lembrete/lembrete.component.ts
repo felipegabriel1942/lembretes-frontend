@@ -49,8 +49,8 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   avisoAoUsuario() {
     this.dialogExclusao = this.dialog.open(AvisoLembreteComponent, {
-      width: '350px',
-      height: '130px'
+      width: '500px',
+      height: '150px'
     });
   }
 

@@ -1,6 +1,19 @@
-<p>Deseja realmente excluir o lembrete?</p>
-<button
-  mat-raised-button
-  color="primary"
-  style="float: right;"
-  class="mr-2">OK</button>
+<div class="col-md-12 my-auto" *ngIf="!carregando">
+  <p *ngIf="quantidadeLembretes > 0">Olá {{usuario?.nome?.split(' ')[0]}} você tem {{quantidadeLembretes}} lembrete(s) cadastrado(s)!</p>
+  <p *ngIf="quantidadeLembretes == 0">Bem vindo(a) {{usuario?.nome?.split(' ')[0]}}, você ainda não tem nenhum lembrete cadastrado, comece agora mesmo a usar o Sea-Lembre!</p>
+  <button
+    mat-raised-button
+    color="primary"
+    style="float: right;"
+    class="mr-2 mt-2"
+    (click)="confirmar()">OK</button>
+</div>
+
+<div class="col-md-12 my-auto" *ngIf="carregando">
+  <mat-progress-spinner
+    class="mx-auto"
+    [color]="color"
+    [mode]="mode"
+    [value]="value">
+  </mat-progress-spinner>
+</div>
