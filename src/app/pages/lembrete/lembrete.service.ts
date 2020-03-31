@@ -23,6 +23,10 @@ export class LembreteService {
     return this.http.get(AppKeys.apiUrl + `lembrete/listar-lembretes?pagina=${pagina}&qtdRegistros=${qtdRegistros}&pkUsuario=${pkUsuario}`);
   }
 
+  listarLembretesPorTitulo(pagina: number, qtdRegistros: number, titulo: string, pkUsuario: number) {
+    return this.http.get(AppKeys.apiUrl + `lembrete/listar-lembretes-por-titulo?pagina=${pagina}&qtdRegistros=${qtdRegistros}&titulo=${titulo}&pkUsuario=${pkUsuario}`);
+  }
+
   excluirLembrete(pkLembrete: number) {
     return this.http.delete(AppKeys.apiUrl + `lembrete?pkLembrete=${pkLembrete}`);
   }
