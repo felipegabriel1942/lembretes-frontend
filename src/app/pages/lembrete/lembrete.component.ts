@@ -115,7 +115,6 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
     const filtrarValor = (evento.target as HTMLInputElement).value;
     this.lembreteService.listarLembretesPorTitulo(this.paginator.pageIndex, 10, filtrarValor, this.usuario.pkUsuario).subscribe(
       (retorno: any) => {
-        console.log(retorno);
         this.dataSource = new MatTableDataSource(retorno.content);
         this.resultsLength = retorno.totalElements;
       }

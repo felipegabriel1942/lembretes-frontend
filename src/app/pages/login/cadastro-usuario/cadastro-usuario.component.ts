@@ -49,6 +49,11 @@ export class CadastroUsuarioComponent implements OnInit {
           duration: 5000
         });
       }, erro => {
+        if (erro.error.includes('email')) {
+          this.snackBar.open('Email já cadastro, por favor informe outro!', 'Fechar', {
+            duration: 5000
+          });
+        }
         this.carregando = false;
       });
     }
