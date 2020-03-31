@@ -1,12 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Lembrete } from 'src/app/shared/models/lembrete';
-import { MatDialogRef, ThemePalette, ProgressSpinnerMode, MatSnackBar, MatTableDataSource } from '@angular/material';
+import { MatDialogRef, ThemePalette, ProgressSpinnerMode, MatSnackBar } from '@angular/material';
 import { Usuario } from 'src/app/shared/models/usuario';
 import { LoginService } from '../../login/login.service';
 import { LembreteService } from '../lembrete.service';
-import { LembreteComponent } from '../lembrete.component';
-import { stringify } from 'querystring';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -61,6 +59,7 @@ export class CriarLembreteComponent implements OnInit, OnDestroy {
       this.lembrete.fkUsuario = this.usuario;
       this.lembreteService.salvarLembrete(this.lembrete).subscribe(retorno => {
         this.carregando = false;
+        this.lembrete = new Lembrete();
         this.dialogRef.close();
         this.snackBar.open('Lembrete salvo com sucesso!', 'Fechar', {
           duration: 5000
@@ -72,14 +71,11 @@ export class CriarLembreteComponent implements OnInit, OnDestroy {
   }
 
   getLembreteEdicao() {
-    this.lembreteEdicaoSubscription = this.lembreteService.edicaoLembrete.subscribe(
-      (lembrete: Lembrete) => {
-        this.lembrete = lembrete;
-        this.formLembrete.get('titulo').setValue(this.lembrete.titulo);
-        this.formLembrete.get('texto').setValue(this.lembrete.texto);
-        this.formLembrete.get('dataLembrete').setValue(new Date(this.lembrete.dataLembrete));
-      }
-    );
+    this.lembrete = this.lembreteService.edicaoLembrete.value;
+    this.lembreteService.edicaoLembrete.next(new Lembrete());
+    this.formLembrete.get('titulo').setValue(this.lembrete.titulo);
+    this.formLembrete.get('texto').setValue(this.lembrete.texto);
+    this.formLembrete.get('dataLembrete').setValue(new Date(this.lembrete.dataLembrete));
   }
 
   cancelar() {

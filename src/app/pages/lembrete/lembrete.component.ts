@@ -103,7 +103,7 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
     this.lembreteService.edicaoLembrete.next(lembrete);
     const dialogRef = this.dialog.open(CriarLembreteComponent, {
       width: '350px',
-      height: '320px'
+      height: '360px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -119,7 +119,7 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
   abrirCadastro() {
     const dialogRef = this.dialog.open(CriarLembreteComponent, {
       width: '350px',
-      height: '320px'
+      height: '360px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
