@@ -27,6 +27,7 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
   dialogExclusao;
   subscriptionList = new Array<Subscription>();
   mobile = false;
+  filtro = '';
 
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
 
@@ -49,8 +50,8 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
 
   avisoAoUsuario() {
     this.dialogExclusao = this.dialog.open(AvisoLembreteComponent, {
-      width: '500px',
-      height: '150px'
+      width: '400px',
+      height: '200px'
     });
   }
 
@@ -153,10 +154,16 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   mostrarAvisoBemVindo() {
+    this.avisoAoUsuario();
     if (this.lembreteService.exibirMensagemBemVindo.value) {
       this.avisoAoUsuario();
       this.lembreteService.exibirMensagemBemVindo.next(false);
     }
+  }
+
+  limparFiltro() {
+    this.filtro = '';
+    this.getLembretes();
   }
 
   ngOnDestroy() {

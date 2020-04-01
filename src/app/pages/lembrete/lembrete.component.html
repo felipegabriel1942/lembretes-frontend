@@ -1,7 +1,7 @@
 
 <div style="background-color: rgb(238, 234, 234); height: auto !important; position: relative; min-height:100%" >
   <mat-toolbar class="estilo-header mat-elevation-z4">
-    <mat-icon style="color: white;" class="mr-2">note_add</mat-icon>
+    <img height="30" src="./assets/images/logo2.png" class="mr-2"/>
     <span style="color: white; font-size: 16px;" class="mt-1">
       SEA-LEMBRE</span>
     <span class="example-fill-remaining-space"></span>
@@ -22,7 +22,13 @@
         <div class="col-9 pr-0">
           <mat-form-field style="width: 100%;">
             <mat-label>Filtrar lembretes</mat-label>
-            <input matInput (keyup)="aplicarFiltro($event)">
+            <input matInput (keyup)="aplicarFiltro($event)" [(ngModel)]="filtro">
+            <button mat-button
+              *ngIf="filtro != ''"
+              matSuffix mat-icon-button aria-label="Clear"
+              (click)="limparFiltro()">
+              <mat-icon>close</mat-icon>
+            </button>
           </mat-form-field>
         </div>
         <div class="col-1 px-0">
