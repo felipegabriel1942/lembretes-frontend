@@ -144,7 +144,7 @@ export class LembreteComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  atualizarPaginaTabela() {
+  atualizarPaginaTabela(evento) {
     this.getLembretes();
   }
 
