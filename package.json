@@ -26,7 +26,7 @@
     "@angular/router": "~8.2.0",
     "bootstrap": "^4.4.1",
     "express": "^4.17.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "mobile-device-detect": "^0.3.3",
     "ngx-device-detector": "^1.4.1",
     "path": "^0.12.7",
